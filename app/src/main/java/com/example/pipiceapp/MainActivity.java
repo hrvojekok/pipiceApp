@@ -23,10 +23,13 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         TextView textView = findViewById(R.id.text1);
         ListView listView = findViewById(R.id.listView);
