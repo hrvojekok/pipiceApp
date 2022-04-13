@@ -33,18 +33,6 @@
                     android:text="@string/telefon"
                     android:textSize="25dp"
                     android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/storeName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/imetrgovine"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:id="@+id/price"
-                    android:text="1000kn"/>
 
 
             </LinearLayout>
@@ -52,7 +40,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/buy"
+            android:text="@string/add"
             android:layout_alignParentRight="true"
             android:padding="15dp"/>
     </RelativeLayout>

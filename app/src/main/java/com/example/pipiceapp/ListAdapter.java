@@ -31,11 +31,7 @@ public class ListAdapter extends ArrayAdapter<Item>{
         }
 
         TextView phoneName = convertView.findViewById(R.id.phoneName);
-        TextView storeName = convertView.findViewById(R.id.storeName);
-        TextView price = convertView.findViewById(R.id.price);
         phoneName.setText(item.phoneName);
-        storeName.setText(item.storeName);
-        price.setText(item.price);
 
         return super.getView(position, convertView, parent);
     }
