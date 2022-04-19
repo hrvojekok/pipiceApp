@@ -20,8 +20,36 @@ public class DetailsActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
 
-        if(intent != null){
+        if(intent.getStringExtra("item1") != null){
             Toast.makeText(DetailsActivity.this, "bla"+ intent.getStringExtra("item1"), Toast.LENGTH_LONG).show();
         }
+        if(intent.getStringExtra("item2") != null){
+            Toast.makeText(DetailsActivity.this, "bla"+ intent.getStringExtra("item2"), Toast.LENGTH_LONG).show();
+        }
+        if(intent.getStringExtra("item3") != null){
+            Toast.makeText(DetailsActivity.this, "bla"+ intent.getStringExtra("item3"), Toast.LENGTH_LONG).show();
+        }
+        if(intent.getStringExtra("item4") != null){
+            Toast.makeText(DetailsActivity.this, "bla"+ intent.getStringExtra("item4"), Toast.LENGTH_LONG).show();
+        }
+        if(intent.getStringExtra("item5") != null){
+            Toast.makeText(DetailsActivity.this, "bla"+ intent.getStringExtra("item5"), Toast.LENGTH_LONG).show();
+        }
+        if(intent.getStringExtra("item6") != null){
+            Toast.makeText(DetailsActivity.this, "bla"+ intent.getStringExtra("item6"), Toast.LENGTH_LONG).show();
+        }
+        if(intent.getStringExtra("item7") != null){
+            Toast.makeText(DetailsActivity.this, "bla"+ intent.getStringExtra("item7"), Toast.LENGTH_LONG).show();
+        }
+        if(intent.getStringExtra("item8") != null){
+            Toast.makeText(DetailsActivity.this, "bla"+ intent.getStringExtra("item8"), Toast.LENGTH_LONG).show();
+        }
+        if(intent.getStringExtra("item9") != null){
+            Toast.makeText(DetailsActivity.this, "bla"+ intent.getStringExtra("item9"), Toast.LENGTH_LONG).show();
+        }
+
+        //if(intent != null){
+        //    Toast.makeText(DetailsActivity.this, "bla"+ intent.getStringExtra("item1"), Toast.LENGTH_LONG).show();
+        //}
     }
 }

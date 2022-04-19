@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class ListAdapter extends ArrayAdapter<Item>{
@@ -27,11 +29,15 @@ public class ListAdapter extends ArrayAdapter<Item>{
 
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
-
         }
 
+        ImageView imageView = convertView.findViewById(R.id.image);
         TextView phoneName = convertView.findViewById(R.id.phoneName);
+        TextView addText = convertView.findViewById(R.id.addButton);
+        imageView.setImageResource(item.imageID);
         phoneName.setText(item.phoneName);
+        addText.setText(item.addButton);
+
 
         return super.getView(position, convertView, parent);
     }
