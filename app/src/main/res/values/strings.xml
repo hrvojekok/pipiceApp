@@ -8,4 +8,15 @@
     <string name="buy">Buy</string>
     <string name="search">Search</string>
     <string name="add">Add</string>
+    <string name="defaluttext">defalutText</string>
+    <string name="firststore">firstStore</string>
+    <string name="secondStore">secondStore</string>
+    <string name="thirsStore">thirdStore</string>
+    <string name="firstprice">firstPrice</string>
+    <string name="secondprice">secondPrice</string>
+    <string name="thirdprice">thirdPrice</string>
+    <string name="ekupi">Ekupi:</string>
+    <string name="hgspot">HGSpot</string>
+    <string name="hg_spot">HG Spot:</string>
+    <string name="instarr">Instar:</string>
 </resources>

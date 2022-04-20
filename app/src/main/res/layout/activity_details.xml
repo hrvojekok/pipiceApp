@@ -1,9 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailsActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/imeTelefona"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/defaluttext"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:id="@+id/firstStore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ekupi"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@+id/imeTelefona"/>
+
+
+    <TextView
+        android:id="@+id/firstPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/firstprice"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@+id/firstStore"/>
+
+    <TextView
+        android:id="@+id/secondStore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hg_spot"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@+id/firstPrice"/>
+
+
+    <TextView
+        android:id="@+id/secondPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/secondprice"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@+id/secondStore" />
+
+    <TextView
+        android:id="@+id/thirdStore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instarr"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@+id/secondPrice"/>
+
+    <TextView
+        android:id="@+id/thirdPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/thirdprice"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@+id/thirdStore" />
+
+</RelativeLayout>

@@ -34,21 +34,64 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        TextView textView = findViewById(R.id.text1);
+
+        int[] imageID = {R.drawable.s10, R.drawable.s20, R.drawable.s21,
+                R.drawable.s22, R.drawable.s5, R.drawable.s6,
+                R.drawable.s7, R.drawable.s8, R.drawable.s9};
+
+        String[] phoneName = {"Samsung Galaxy S10", "Samsung Galaxy S20", "Samsung Galaxy S21", "Samsung Galaxy S22", "Samsung Galaxy S5", "Samsung Galaxy S6",
+                "Samsung Galaxy S7", "Samsung Galaxy S8", "Samsung Galaxy S9"};
+
+        String[] firstPrice = {"5899", "9001", "9955", "11223", "4334", "5004", "6000", "7000", "7877"};
+        String[] secondPrice = {"5987", "8898", "9932", "11993", "4455", "4999", "6550", "6988", "8877"};
+        String[] thirdPrice = {"5999", "8992", "9928", "11099", "5000", "5110", "6554", "6779", "7663"};
+        //TextView textView = findViewById(R.id.text1);
 
 
         ArrayList<Item> arrayList = new ArrayList<>();
 
 
-        ArrayAdapter<Item> arrayAdapter = new ArrayAdapter<Item>(this, R.layout.list_item, R.id.phoneName, arrayList);
-        ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(arrayAdapter);
+        //ArrayAdapter<Item> arrayAdapter = new ArrayAdapter<Item>(this, R.layout.list_item, R.id.phoneName, arrayList);
+        //ListView listView = findViewById(R.id.listView);
+        //listView.setAdapter(arrayAdapter);
+
+
+        for(int i = 0; i < imageID.length; i++){
+            Item item = new Item(phoneName[i], "Add", imageID[i]);
+            arrayList.add(item);
+        }
+
+        ListAdapter listAdapter = new ListAdapter(MainActivity.this, arrayList);
+
+        binding.listView.setAdapter(listAdapter);
+        binding.listView.setClickable(true);
+        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+
+                intent.putExtra("phoneName", phoneName[i]);
+                intent.putExtra("itemNumber", i);
+                intent.putExtra("imageID", imageID[i]);
+
+                startActivity(intent);
+
+            }
+        });
 
 
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference reference = database.getReference().child("mobiteli");
+        //ArrayAdapter<Item> arrayAdapter = new ArrayAdapter<Item>(this, R.layout.list_item, R.id.phoneName, arrayList);
+        //ListView listView = findViewById(R.id.listView);
+        //listView.setAdapter(arrayAdapter);
 
+
+
+        //FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
+        //DatabaseReference reference = database.getReference().child("mobiteli");
+
+        /*
         reference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -116,5 +159,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        */
     }
 }

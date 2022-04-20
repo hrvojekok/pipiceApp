@@ -39,6 +39,6 @@ public class ListAdapter extends ArrayAdapter<Item>{
         addText.setText(item.addButton);
 
 
-        return super.getView(position, convertView, parent);
+        return convertView;
     }
 }
