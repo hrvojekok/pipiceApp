@@ -11,7 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/defaluttext"
-        tools:ignore="MissingConstraints"/>
+        tools:ignore="MissingConstraints"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8sp"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/firstStore"
@@ -19,7 +23,9 @@
         android:layout_height="wrap_content"
         android:text="@string/ekupi"
         tools:ignore="MissingConstraints"
-        android:layout_below="@+id/imeTelefona"/>
+        android:layout_below="@+id/imeTelefona"
+        android:layout_margin="8sp"
+        android:textSize="20sp" />
 
 
     <TextView
@@ -28,7 +34,10 @@
         android:layout_height="wrap_content"
         android:text="@string/firstprice"
         tools:ignore="MissingConstraints"
-        android:layout_below="@+id/firstStore"/>
+        android:layout_below="@+id/imeTelefona"
+        android:layout_toEndOf="@+id/firstStore"
+        android:layout_margin="8sp"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/secondStore"
@@ -36,16 +45,21 @@
         android:layout_height="wrap_content"
         android:text="@string/hg_spot"
         tools:ignore="MissingConstraints"
-        android:layout_below="@+id/firstPrice"/>
+        android:layout_below="@+id/firstStore"
+        android:layout_margin="8sp"
+        android:textSize="20sp" />/>
 
 
     <TextView
         android:id="@+id/secondPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/firstPrice"
         android:text="@string/secondprice"
         tools:ignore="MissingConstraints"
-        android:layout_below="@+id/secondStore" />
+        android:layout_margin="8sp"
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/secondStore" />
 
     <TextView
         android:id="@+id/thirdStore"
@@ -53,7 +67,9 @@
         android:layout_height="wrap_content"
         android:text="@string/instarr"
         tools:ignore="MissingConstraints"
-        android:layout_below="@+id/secondPrice"/>
+        android:layout_below="@+id/secondStore"
+        android:layout_margin="8sp"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/thirdPrice"
@@ -61,6 +77,9 @@
         android:layout_height="wrap_content"
         android:text="@string/thirdprice"
         tools:ignore="MissingConstraints"
-        android:layout_below="@+id/thirdStore" />
+        android:layout_below="@+id/secondPrice"
+        android:layout_margin="8sp"
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/thirdStore"/>
 
 </RelativeLayout>
