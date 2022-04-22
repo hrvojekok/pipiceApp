@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,9 @@ public class DetailsActivity extends AppCompatActivity {
         TextView textView2 = findViewById(R.id.firstPrice);
         TextView textView3 = findViewById(R.id.secondPrice);
         TextView textView4 = findViewById(R.id.thirdPrice);
+        TextView textView5 = findViewById(R.id.addToBasket1);
+        TextView textView6 = findViewById(R.id.addToBasket2);
+        TextView textView7 = findViewById(R.id.addToBasket3);
 
         Intent intent = this.getIntent();
 
@@ -51,6 +55,28 @@ public class DetailsActivity extends AppCompatActivity {
             textView2.setText(firstPrice[index]);
             textView3.setText(secondPrice[index]);
             textView4.setText(thirdPrice[index]);
+
+            textView5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //dodati u košaricu
+                    Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
+                }
+            });
+            textView6.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //dodati u košaricu
+                    Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
+                }
+            });
+            textView7.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //dodati u košaricu
+                    Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
+                }
+            });
 
 
             //textView5.setText(itemIDString);

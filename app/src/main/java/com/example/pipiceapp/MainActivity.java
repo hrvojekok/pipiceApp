@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         for(int i = 0; i < imageID.length; i++){
-            Item item = new Item(phoneName[i], "Add", imageID[i]);
+            Item item = new Item(phoneName[i], imageID[i]);
             arrayList.add(item);
         }
 

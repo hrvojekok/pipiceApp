@@ -28,6 +28,7 @@
         android:textSize="20sp" />
 
 
+
     <TextView
         android:id="@+id/firstPrice"
         android:layout_width="wrap_content"
@@ -40,6 +41,17 @@
         android:textSize="20sp"/>
 
     <TextView
+        android:id="@+id/addToBasket1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@+id/imeTelefona"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8sp"
+        android:textSize="20sp" />
+
+    <TextView
         android:id="@+id/secondStore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,7 +59,7 @@
         tools:ignore="MissingConstraints"
         android:layout_below="@+id/firstStore"
         android:layout_margin="8sp"
-        android:textSize="20sp" />/>
+        android:textSize="20sp" />
 
 
     <TextView
@@ -60,6 +72,17 @@
         android:layout_margin="8sp"
         android:textSize="20sp"
         android:layout_toEndOf="@+id/secondStore" />
+
+    <TextView
+        android:id="@+id/addToBasket2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@+id/firstPrice"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8sp"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/thirdStore"
@@ -81,5 +104,17 @@
         android:layout_margin="8sp"
         android:textSize="20sp"
         android:layout_toEndOf="@+id/thirdStore"/>
+
+    <TextView
+        android:id="@+id/addToBasket3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@+id/secondPrice"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8sp"
+        android:textSize="20sp" />
+
 
 </RelativeLayout>

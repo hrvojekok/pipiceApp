@@ -33,10 +33,8 @@ public class ListAdapter extends ArrayAdapter<Item>{
 
         ImageView imageView = convertView.findViewById(R.id.image);
         TextView phoneName = convertView.findViewById(R.id.phoneName);
-        TextView addText = convertView.findViewById(R.id.addButton);
         imageView.setImageResource(item.imageID);
         phoneName.setText(item.phoneName);
-        addText.setText(item.addButton);
 
 
         return convertView;
