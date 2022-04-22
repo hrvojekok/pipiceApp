@@ -60,21 +60,27 @@ public class DetailsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //dodati u košaricu
-                    Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(DetailsActivity.this, BasketActivity.class);
+                    startActivity(intent);
                 }
             });
             textView6.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //dodati u košaricu
-                    Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(DetailsActivity.this, BasketActivity.class);
+                    startActivity(intent);
                 }
             });
             textView7.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //dodati u košaricu
-                    Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(DetailsActivity.this, BasketActivity.class);
+                    startActivity(intent);
                 }
             });
 

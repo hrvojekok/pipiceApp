@@ -5,23 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
+    <SearchView
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:text="@string/search"
-        android:height="25dp"
-        android:layout_margin="8dp"
-        android:id="@+id/text1" />
+        android:layout_margin="8dp"/>
 
     <ListView
         tools:listitem="@layout/list_item"
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/text1" />
+        android:layout_below="@+id/searchBar" />
 
 
 

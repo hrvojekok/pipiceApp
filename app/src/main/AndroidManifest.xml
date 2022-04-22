@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PipiceApp">
         <activity
+            android:name=".BasketActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailsActivity"
             android:exported="false" />
         <activity
