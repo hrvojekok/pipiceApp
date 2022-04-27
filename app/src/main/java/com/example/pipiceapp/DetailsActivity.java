@@ -53,7 +53,7 @@ public class DetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 SharedPreferences sh = getSharedPreferences("SharedPreferences", Context.MODE_MULTI_PROCESS);
                 String index = sh.getString("index", "");
-                Toast.makeText(DetailsActivity.this, "image id " + index, Toast.LENGTH_LONG).show();
+                //Toast.makeText(DetailsActivity.this, "image id " + index, Toast.LENGTH_LONG).show();
 
                 String basketItem = String.valueOf(snapshot.child(phoneNameList[Integer.parseInt(index)]).child("phoneName").getValue());
                 textView1.setText(basketItem);
