@@ -21,4 +21,6 @@
     <string name="instarr">Instar:</string>
     <string name="itemnumber">itemNumber</string>
     <string name="addd">Add</string>
+    <string name="add_to_baskett">Add to basket</string>
+    <string name="plus">+</string>
 </resources>
