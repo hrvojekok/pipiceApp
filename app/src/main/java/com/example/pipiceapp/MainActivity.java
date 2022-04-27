@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,14 +27,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-
     ActivityMainBinding binding;
-    //private final String[] basketPhoneName = {};
-    //private final int[] basketImage = {};
-    //private int index = 0;
-    FirebaseDatabase firebaseDatabase;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         View basket = findViewById(R.id.basket);
-
+        SharedPreferences sharedPreferences = getSharedPreferences("SharedPreferences", Context.MODE_MULTI_PROCESS);
 
         int[] imageID = {R.drawable.s10, R.drawable.s20, R.drawable.s21,
                 R.drawable.s22, R.drawable.s5, R.drawable.s6,
@@ -57,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         basket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+                Intent intent = new Intent(MainActivity.this, BasketActivity.class);
                 startActivity(intent);
             }
         });
@@ -90,8 +85,17 @@ public class MainActivity extends AppCompatActivity {
                 binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
 
+                        String basketItem = String.valueOf(snapshot.child(phoneName[i]).child("phoneName").getValue());
+                        Toast.makeText(MainActivity.this, "Dodano u košaricu: " + basketItem, Toast.LENGTH_LONG).show();
+
+                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                        myEdit.putString(basketItem, basketItem);
+                        myEdit.putString("index", String.valueOf(i));
+                        myEdit.apply();
+
+
+                        Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
                         startActivity(intent);
                     }
                 });

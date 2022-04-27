@@ -1,14 +1,22 @@
 package com.example.pipiceapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pipiceapp.databinding.ActivityDetailsBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 
@@ -56,33 +64,6 @@ public class DetailsActivity extends AppCompatActivity {
             textView3.setText(secondPrice[index]);
             textView4.setText(thirdPrice[index]);
 
-            textView5.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //dodati u košaricu
-                    //Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(DetailsActivity.this, BasketActivity.class);
-                    startActivity(intent);
-                }
-            });
-            textView6.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //dodati u košaricu
-                    //Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(DetailsActivity.this, BasketActivity.class);
-                    startActivity(intent);
-                }
-            });
-            textView7.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //dodati u košaricu
-                    //Toast.makeText(DetailsActivity.this, "dodano u košaricu", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(DetailsActivity.this, BasketActivity.class);
-                    startActivity(intent);
-                }
-            });
 
 
             //textView5.setText(itemIDString);
@@ -95,12 +76,49 @@ public class DetailsActivity extends AppCompatActivity {
             String imageID = intent.getStringExtra("imageID");
             //Toast.makeText(DetailsActivity.this, "image id" + imageID, Toast.LENGTH_LONG).show();
 
-            textView1.setText(phoneName);
+            SharedPreferences sh = getSharedPreferences("SharedPreferences", Context.MODE_MULTI_PROCESS);
+            String a = sh.getString("index", "");
+            Toast.makeText(DetailsActivity.this, "image id" + a, Toast.LENGTH_LONG).show();
+
+            textView1.setText(a);
             //textView2.setText(firstPriceString);
             //textView3.setText(secondPriceString);
             //textView4.setText(thirdPriceString);
         }
 
+
+
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference reference = database.getReference().child("mobiteli");
+
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                SharedPreferences sh = getSharedPreferences("SharedPreferences", Context.MODE_MULTI_PROCESS);
+                String index = sh.getString("index", "");
+                Toast.makeText(DetailsActivity.this, "image id " + index, Toast.LENGTH_LONG).show();
+
+                String basketItem = String.valueOf(snapshot.child(phoneNameList[Integer.parseInt(index)]).child("phoneName").getValue());
+                textView1.setText(basketItem);
+
+
+                String firstPriceItem = String.valueOf(snapshot.child(phoneNameList[Integer.parseInt(index)]).child("store").child("ekupi").getValue());
+                String secondPriceItem = String.valueOf(snapshot.child(phoneNameList[Integer.parseInt(index)]).child("store").child("hgspot").getValue());
+                String thirdPriceItem = String.valueOf(snapshot.child(phoneNameList[Integer.parseInt(index)]).child("store").child("instar").getValue());
+
+                textView2.setText(firstPriceItem);
+                textView3.setText(secondPriceItem);
+                textView4.setText(thirdPriceItem);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
 //        if(intent.getStringExtra("itemNumber") != null) {
