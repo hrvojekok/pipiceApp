@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,6 +29,9 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         basket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, BasketActivity.class);
+                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
                 startActivity(intent);
             }
         });
@@ -62,9 +66,11 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
 
 
-
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference reference = database.getReference().child("mobiteli");
+        //DatabaseReference reference = database.getReference().child("mobiteli");
+        DatabaseReference reference = database.getReference();
+        //DatabaseReference referenceBasket = database.getReference().child("mobiteli").child("basket");
+
 
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -72,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                int numberOfChildren = (int) snapshot.getChildrenCount();
+                int numberOfChildren = (int) snapshot.child("mobiteli").getChildrenCount();
                 for(int i = 0; i < numberOfChildren; i++){
-                        Item item = new Item(Objects.requireNonNull(snapshot.child(phoneName[i]).child("phoneName").getValue()).toString(), imageID[i]);
+                        Item item = new Item(Objects.requireNonNull(snapshot.child("mobiteli").child(phoneName[i]).child("phoneName").getValue()).toString(), imageID[i]);
                         arrayList.add(item);
                 }
 
@@ -86,7 +92,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                        String basketItem = String.valueOf(snapshot.child(phoneName[i]).child("phoneName").getValue());
+                        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("basketDatabase", MODE_PRIVATE, null);
+
+
+
+                        String basketItem = String.valueOf(snapshot.child("mobiteli").child(phoneName[i]).child("phoneName").getValue());
                         Toast.makeText(MainActivity.this, "Dodano u košaricu: " + basketItem, Toast.LENGTH_LONG).show();
 
                         SharedPreferences.Editor myEdit = sharedPreferences.edit();
@@ -94,9 +104,11 @@ public class MainActivity extends AppCompatActivity {
                         myEdit.putString("index", String.valueOf(i));
                         myEdit.apply();
 
+                        //addToBasket(phoneName[i], String.valueOf(i));
+
 
                         Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
-                        startActivity(intent);
+                        //startActivity(intent);
                     }
                 });
             }
@@ -106,6 +118,30 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+/*
+    private void addToBasket(String phoneName, String index) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference reference = database.getReference();
+
+        reference.push();
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                reference.child("basket").child(String.valueOf(index)).setValue(phoneName);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
+*/
+
+
 }
