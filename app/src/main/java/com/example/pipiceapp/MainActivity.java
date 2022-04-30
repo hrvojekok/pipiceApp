@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -91,18 +92,24 @@ public class MainActivity extends AppCompatActivity {
                 binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        String basketItem = String.valueOf(snapshot.child("mobiteli").child(phoneName[i]).child("phoneName").getValue());
+                        String basketItemPrice1 = String.valueOf(snapshot.child("mobiteli").child(phoneName[i]).child("store").child("ekupi").getValue());
+                        String basketItemPrice2 = String.valueOf(snapshot.child("mobiteli").child(phoneName[i]).child("store").child("hgspot").getValue());
+                        String basketItemPrice3 = String.valueOf(snapshot.child("mobiteli").child(phoneName[i]).child("store").child("instar").getValue());
+
 
                         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("basketDatabase", MODE_PRIVATE, null);
+                        DabaseHelper dabaseHelper = new DabaseHelper(MainActivity.this);
+                        dabaseHelper.addPhone(basketItem, basketItemPrice1, basketItemPrice2, basketItemPrice3);
 
 
 
-                        String basketItem = String.valueOf(snapshot.child("mobiteli").child(phoneName[i]).child("phoneName").getValue());
-                        Toast.makeText(MainActivity.this, "Dodano u košaricu: " + basketItem, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(MainActivity.this, "Dodano u košaricu: " + basketItem, Toast.LENGTH_LONG).show();
 
-                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                        myEdit.putString(basketItem, basketItem);
-                        myEdit.putString("index", String.valueOf(i));
-                        myEdit.apply();
+                        //SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                        //myEdit.putString(basketItem, basketItem);
+                        //myEdit.putString("index", String.valueOf(i));
+                        //myEdit.apply();
 
                         //addToBasket(phoneName[i], String.valueOf(i));
 
