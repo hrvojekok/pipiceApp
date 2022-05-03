@@ -42,6 +42,18 @@ public class DabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    void dropTable(SQLiteDatabase db){
+        //db.execSQL("DELETE FROM " + TABLE_NAME);
+        //ContentValues cv = new ContentValues();
+        //cv.clear();
+        db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME);
+        //db.delete(TABLE_NAME, COLUMN_ID, )
+        //db.delete(TABLE_NAME, null, null);
+        Toast.makeText(context, "Successfully deleted", Toast.LENGTH_SHORT).show();
+
+    }
+
     void addPhone(String phoneName, String priceEkupi, String priceHgspot, String priceInstar){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();

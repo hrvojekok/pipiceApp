@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -43,6 +44,7 @@ public class DetailsActivity extends AppCompatActivity {
         TextView textView5 = findViewById(R.id.addToBasket1);
         TextView textView6 = findViewById(R.id.addToBasket2);
         TextView textView7 = findViewById(R.id.addToBasket3);
+        TextView textView8 = findViewById(R.id.emptyBasket);
 
         Intent intent = this.getIntent();
 
@@ -53,6 +55,11 @@ public class DetailsActivity extends AppCompatActivity {
 
         String[] phoneName = {"Samsung Galaxy S10", "Samsung Galaxy S20", "Samsung Galaxy S21", "Samsung Galaxy S22", "Samsung Galaxy S5", "Samsung Galaxy S6",
                 "Samsung Galaxy S7", "Samsung Galaxy S8", "Samsung Galaxy S9"};
+
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("basketDatabase", MODE_PRIVATE, null);
+        DabaseHelper dabaseHelper = new DabaseHelper(DetailsActivity.this);
+
 
         ArrayList<Item> arrayList = new ArrayList<>();
         ArrayAdapter<Item> arrayAdapter = new ArrayAdapter<Item>(this, R.layout.list_item_basket, R.id.phoneName, arrayList);
@@ -105,6 +112,18 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        textView8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //sqLiteDatabase.delete("basketTable", null, null);
+                dabaseHelper.dropTable(sqLiteDatabase);
+                Toast.makeText(DetailsActivity.this, "Košarica obrisana", Toast.LENGTH_LONG).show();
+
+                //dabaseHelper.addPhone(basketItem, basketItemPrice1, basketItemPrice2, basketItemPrice3);
             }
         });
     }

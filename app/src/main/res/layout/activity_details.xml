@@ -16,6 +16,15 @@
         android:textSize="25sp"
         android:textStyle="bold"/>
     <TextView
+        android:id="@+id/emptyBasket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/obri_i"
+        tools:ignore="MissingConstraints"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8sp"
+        android:textSize="20sp" />
+    <TextView
         android:layout_below="@+id/kosarica"
         android:id="@+id/imeTelefona"
         android:layout_width="wrap_content"
