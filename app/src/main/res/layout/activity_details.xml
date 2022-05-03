@@ -24,126 +24,16 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="8sp"
         android:textSize="20sp" />
-    <TextView
-        android:layout_below="@+id/kosarica"
-        android:id="@+id/imeTelefona"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="8sp"
-        android:layout_marginTop="8sp"
-        android:layout_marginEnd="8sp"
-        android:layout_marginBottom="8sp"
-        android:text="@string/defaluttext"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/firstStore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ekupi"
-        tools:ignore="MissingConstraints"
-        android:layout_below="@+id/imeTelefona"
-        android:layout_margin="8sp"
-        android:textSize="20sp" />
 
 
 
-    <TextView
-        android:id="@+id/firstPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/firstprice"
-        tools:ignore="MissingConstraints"
-        android:layout_below="@+id/imeTelefona"
-        android:layout_toEndOf="@+id/firstStore"
-        android:layout_margin="8sp"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/addToBasket1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add"
-        tools:ignore="MissingConstraints"
-        android:layout_below="@+id/imeTelefona"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="8sp"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/secondStore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hg_spot"
-        tools:ignore="MissingConstraints"
-        android:layout_below="@+id/firstStore"
-        android:layout_margin="8sp"
-        android:textSize="20sp" />
-
-
-    <TextView
-        android:id="@+id/secondPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/firstPrice"
-        android:text="@string/secondprice"
-        tools:ignore="MissingConstraints"
-        android:layout_margin="8sp"
-        android:textSize="20sp"
-        android:layout_toEndOf="@+id/secondStore" />
-
-    <TextView
-        android:id="@+id/addToBasket2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add"
-        tools:ignore="MissingConstraints"
-        android:layout_below="@+id/firstPrice"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="8sp"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/thirdStore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/instarr"
-        tools:ignore="MissingConstraints"
-        android:layout_below="@+id/secondStore"
-        android:layout_margin="8sp"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/thirdPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/thirdprice"
-        tools:ignore="MissingConstraints"
-        android:layout_below="@+id/secondPrice"
-        android:layout_margin="8sp"
-        android:textSize="20sp"
-        android:layout_toEndOf="@+id/thirdStore"/>
-
-    <TextView
-        android:id="@+id/addToBasket3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add"
-        tools:ignore="MissingConstraints"
-        android:layout_below="@+id/secondPrice"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="8sp"
-        android:textSize="20sp" />
 
     <ListView
         tools:listitem="@layout/list_item_basket"
         android:id="@+id/listViewBasket"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/addToBasket3" />
+        android:layout_below="@+id/emptyBasket" />
 
 
 </RelativeLayout>

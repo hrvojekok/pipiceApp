@@ -2,6 +2,7 @@ package com.example.pipiceapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -43,15 +44,15 @@ public class DabaseHelper extends SQLiteOpenHelper {
     }
 
     void dropTable(SQLiteDatabase db){
-        //db.execSQL("DELETE FROM " + TABLE_NAME);
-        //ContentValues cv = new ContentValues();
-        //cv.clear();
         db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
-        //db.delete(TABLE_NAME, COLUMN_ID, )
-        //db.delete(TABLE_NAME, null, null);
         Toast.makeText(context, "Successfully deleted", Toast.LENGTH_SHORT).show();
 
+    }
+    public Cursor getString(String[] columnNames){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_NAME, columnNames, null, null, null, null, null);
+        return cursor;
     }
 
     void addPhone(String phoneName, String priceEkupi, String priceHgspot, String priceInstar){

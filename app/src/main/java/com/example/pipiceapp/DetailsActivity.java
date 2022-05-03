@@ -3,12 +3,15 @@ package com.example.pipiceapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,20 +34,17 @@ public class DetailsActivity extends AppCompatActivity {
 
     ActivityDetailsBinding binding;
 
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        TextView textView1 = findViewById(R.id.imeTelefona);
-        TextView textView2 = findViewById(R.id.firstPrice);
-        TextView textView3 = findViewById(R.id.secondPrice);
-        TextView textView4 = findViewById(R.id.thirdPrice);
-        TextView textView5 = findViewById(R.id.addToBasket1);
-        TextView textView6 = findViewById(R.id.addToBasket2);
-        TextView textView7 = findViewById(R.id.addToBasket3);
+        //TextView textView1 = findViewById(R.id.imeTelefona);
+        //TextView textView7 = findViewById(R.id.addToBasket3);
         TextView textView8 = findViewById(R.id.emptyBasket);
+        ListView listViewBasket = findViewById(R.id.listViewBasket);
 
         Intent intent = this.getIntent();
 
@@ -63,57 +63,50 @@ public class DetailsActivity extends AppCompatActivity {
 
         ArrayList<Item> arrayList = new ArrayList<>();
         ArrayAdapter<Item> arrayAdapter = new ArrayAdapter<Item>(this, R.layout.list_item_basket, R.id.phoneName, arrayList);
-        ListView listViewBasket = findViewById(R.id.listViewBasket);
-        listViewBasket.setAdapter(arrayAdapter);
+        //listViewBasket.setAdapter(arrayAdapter);
+
+
+        Cursor cursor = dabaseHelper.getString(null);
+        //int column = cursor.getColumnCount();
+        String[] columnNames = cursor.getColumnNames();
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference reference = database.getReference().child("mobiteli");
 
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                SharedPreferences sharedPreferences = getSharedPreferences("SharedPreferences", Context.MODE_MULTI_PROCESS);
-                String index = sharedPreferences.getString("index", "");
+        //int columnNamesLength = columnNames.length;
+        //for(int i = 0; i < columnNamesLength; i++){
+            if(cursor.moveToFirst()){
 
+                while(cursor.moveToNext()){
+                    String columnItem = cursor.getString(cursor.getColumnIndex("phone_name"));
 
-                Map<String,?> entries = sharedPreferences.getAll();
-                Set<String> keys = entries.keySet();
-                for (String key : keys) {
-                    //Toast.makeText(DetailsActivity.this, "image id " + key, Toast.LENGTH_LONG).show();
-                    textView7.setText(key);
-                    //Item item = new Item(Objects.requireNonNull(snapshot.child("mobiteli").child(phoneName[Integer.parseInt(key)]).child("phoneName").getValue()).toString(), imageID[Integer.parseInt(key)]);
-                    //arrayList.add(item);
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String phoneNameForItem = (String) snapshot.child(columnItem).child("phoneName").getValue();
+
+                            int abs = findIndex(phoneName, phoneNameForItem);
+
+                            Item item = new Item(columnItem, imageID[2]);
+                            arrayList.add(item);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
-                //int numberOfChildren = (int) snapshot.child("mobiteli").getChildrenCount();
-                /*for(int i = 0; i < size; i++){
-                    String indexItem = sharedPreferences.getString("index", "");
-                    Item item = new Item(Objects.requireNonNull(snapshot.child("mobiteli").child(phoneName[i]).child("phoneName").getValue()).toString(), imageID[i]);
-                    arrayList.add(item);
-                }*/
-
-
-                //Toast.makeText(DetailsActivity.this, "image id " + index, Toast.LENGTH_LONG).show();
-
-                String basketItem = String.valueOf(snapshot.child(phoneName[Integer.parseInt(index)]).child("phoneName").getValue());
-                textView1.setText(basketItem);
-
-
-                String firstPriceItem = String.valueOf(snapshot.child(phoneName[Integer.parseInt(index)]).child("store").child("ekupi").getValue());
-                String secondPriceItem = String.valueOf(snapshot.child(phoneName[Integer.parseInt(index)]).child("store").child("hgspot").getValue());
-                String thirdPriceItem = String.valueOf(snapshot.child(phoneName[Integer.parseInt(index)]).child("store").child("instar").getValue());
-
-                textView2.setText(firstPriceItem);
-                textView3.setText(secondPriceItem);
-                textView4.setText(thirdPriceItem);
             }
+        //}
+        ListAdapter listAdapter = new ListAdapter(DetailsActivity.this, arrayList);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        binding.listViewBasket.setAdapter(listAdapter);
 
-            }
-        });
+
+
 
         textView8.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,5 +119,34 @@ public class DetailsActivity extends AppCompatActivity {
                 //dabaseHelper.addPhone(basketItem, basketItemPrice1, basketItemPrice2, basketItemPrice3);
             }
         });
+
+    }
+
+    // Linear-search function to find the index of an element
+    public static int findIndex(String arr[], String t)
+    {
+
+        // if array is Null
+        if (arr == null) {
+            return -1;
+        }
+
+        // find length of array
+        int len = arr.length;
+        int i = 0;
+
+        // traverse in the array
+        while (i < len) {
+
+            // if the i-th element is t
+            // then return the index
+            if (arr[i] == t) {
+                return i;
+            }
+            else {
+                i = i + 1;
+            }
+        }
+        return -1;
     }
 }
