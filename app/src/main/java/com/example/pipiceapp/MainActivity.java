@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int numberOfChildren = (int) snapshot.child("mobiteli").getChildrenCount();
                 for(int i = 0; i < numberOfChildren; i++){
-                        Item item = new Item(Objects.requireNonNull(snapshot.child("mobiteli").child(phoneName[i]).child("phoneName").getValue()).toString(), imageID[i]);
+                        Item item = new Item(Objects.requireNonNull(snapshot.child("mobiteli").child(phoneName[i]).child("phoneName").getValue()).toString(), String.valueOf(imageID[i]));
                         arrayList.add(item);
                 }
 
@@ -100,16 +100,16 @@ public class MainActivity extends AppCompatActivity {
 
                         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("basketDatabase", MODE_PRIVATE, null);
                         DabaseHelper dabaseHelper = new DabaseHelper(MainActivity.this);
-                        dabaseHelper.addPhone(basketItem, basketItemPrice1, basketItemPrice2, basketItemPrice3);
+                        dabaseHelper.addPhone(basketItem, basketItemPrice1, basketItemPrice2, basketItemPrice3, String.valueOf(imageID[i]));
 
 
 
                         //Toast.makeText(MainActivity.this, "Dodano u košaricu: " + basketItem, Toast.LENGTH_LONG).show();
 
-                        //SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                        //myEdit.putString(basketItem, basketItem);
-                        //myEdit.putString("index", String.valueOf(i));
-                        //myEdit.apply();
+                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                        myEdit.putString(basketItem, basketItem);
+                        myEdit.putString("index", String.valueOf(i));
+                        myEdit.apply();
 
                         //addToBasket(phoneName[i], String.valueOf(i));
 

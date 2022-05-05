@@ -20,6 +20,7 @@ public class DabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_PRICE_EKUPI = "ekupi_price";
     private static final String COLUMN_PRICE_HGSPOT = "hgspot_price";
     private static final String COLUMN_PRICE_INSTAR = "instar_price";
+    private static final String COLUMN_IMAGE_ID = "image_id";
 
     public DabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,12 +29,14 @@ public class DabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE " + TABLE_NAME +
-                " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_PHONE_NAME + " TEXT, " +
-                COLUMN_PRICE_EKUPI + " TEXT, " +
-                COLUMN_PRICE_HGSPOT + " TEXT, " +
-                COLUMN_PRICE_INSTAR + " TEXT);";
+        String query = "CREATE TABLE basketTable ( _id INTEGER PRIMARY KEY AUTOINCREMENT, phone_name TEXT, ekupi_price TEXT, hgspot_price TEXT, instar_price TEXT, image_id TEXT);";
+        //String query = "CREATE TABLE " + TABLE_NAME +
+        //        " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        //        COLUMN_PHONE_NAME + " TEXT, " +
+        //        COLUMN_PRICE_EKUPI + " TEXT, " +
+        //        COLUMN_PRICE_HGSPOT + " TEXT, " +
+        //        COLUMN_IMAGE_ID + " TEXT, " +
+        //        COLUMN_PRICE_INSTAR + " TEXT);";
         db.execSQL(query);
     }
 
@@ -55,7 +58,7 @@ public class DabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void addPhone(String phoneName, String priceEkupi, String priceHgspot, String priceInstar){
+    void addPhone(String phoneName, String priceEkupi, String priceHgspot, String priceInstar, String imageID){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -63,6 +66,7 @@ public class DabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_PRICE_EKUPI, priceEkupi);
         cv.put(COLUMN_PRICE_HGSPOT, priceHgspot);
         cv.put(COLUMN_PRICE_INSTAR, priceInstar);
+        cv.put(COLUMN_IMAGE_ID, imageID);
 
         long result = db.insert(TABLE_NAME, null, cv);
         if(result == -1){

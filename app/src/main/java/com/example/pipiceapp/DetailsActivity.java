@@ -60,7 +60,6 @@ public class DetailsActivity extends AppCompatActivity {
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("basketDatabase", MODE_PRIVATE, null);
         DabaseHelper dabaseHelper = new DabaseHelper(DetailsActivity.this);
 
-
         ArrayList<Item> arrayList = new ArrayList<>();
         ArrayAdapter<Item> arrayAdapter = new ArrayAdapter<Item>(this, R.layout.list_item_basket, R.id.phoneName, arrayList);
         //listViewBasket.setAdapter(arrayAdapter);
@@ -73,7 +72,21 @@ public class DetailsActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference reference = database.getReference().child("mobiteli");
+        DatabaseReference referenceBasket = database.getReference().child("basket");
 
+        referenceBasket.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Toast.makeText(DetailsActivity.this, "refrešalo se", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        SharedPreferences sharedPreferences = this.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
 
         //int columnNamesLength = columnNames.length;
         //for(int i = 0; i < columnNamesLength; i++){
@@ -81,15 +94,18 @@ public class DetailsActivity extends AppCompatActivity {
 
                 while(cursor.moveToNext()){
                     String columnItem = cursor.getString(cursor.getColumnIndex("phone_name"));
+                    String imageIDItem = cursor.getString(cursor.getColumnIndex("image_id"));
 
                     reference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            int stringIndex = Integer.parseInt(sharedPreferences.getString("index", null));
                             String phoneNameForItem = (String) snapshot.child(columnItem).child("phoneName").getValue();
 
                             int abs = findIndex(phoneName, phoneNameForItem);
 
-                            Item item = new Item(columnItem, imageID[2]);
+                            Item item = new Item(columnItem, imageIDItem);
                             arrayList.add(item);
                         }
 
@@ -114,7 +130,6 @@ public class DetailsActivity extends AppCompatActivity {
 
                 //sqLiteDatabase.delete("basketTable", null, null);
                 dabaseHelper.dropTable(sqLiteDatabase);
-                Toast.makeText(DetailsActivity.this, "Košarica obrisana", Toast.LENGTH_LONG).show();
 
                 //dabaseHelper.addPhone(basketItem, basketItemPrice1, basketItemPrice2, basketItemPrice3);
             }
