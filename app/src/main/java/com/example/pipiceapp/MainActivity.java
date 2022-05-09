@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
                 int numberOfChildren = (int) snapshot.child("mobiteli").getChildrenCount();
                 for(int i = 0; i < numberOfChildren; i++){
-                        Item item = new Item(Objects.requireNonNull(snapshot.child("mobiteli").child(phoneName[i]).child("phoneName").getValue()).toString(), String.valueOf(imageID[i]));
+                        Item item = new Item(Objects.requireNonNull(snapshot.child("mobiteli").child(phoneName[i]).child("phoneName").getValue()).toString(),
+                                String.valueOf(imageID[i]));
                         arrayList.add(item);
                 }
 

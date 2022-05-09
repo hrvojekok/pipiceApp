@@ -28,46 +28,69 @@
                 android:layout_marginStart="20dp"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/storeName"
+                    android:id="@+id/phoneNameBasket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/telefon"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
                 <TextView
-                android:id="@+id/phoneName1"
+                    android:id="@+id/priceEkupii"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ekupi_cijena_hrk"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/priceHgspott"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hgspot_cijena_hrk"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/priceInstarr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/instar_cijena_hrk"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/telefon"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
+                android:layout_marginStart="5dp"
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/phoneName2"
+                    android:id="@+id/phoneNameBaskett"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/asd"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/priceEkupi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/telefon"
                     android:textSize="15sp"
                     android:textStyle="bold"/>
                 <TextView
-                    android:id="@+id/phoneName3"
+                    android:id="@+id/priceHgspot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/telefon"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/priceInstar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/telefon"
                     android:textSize="15sp"
                     android:textStyle="bold"/>
             </LinearLayout>
+
         </LinearLayout>
-        <TextView
-            android:id="@+id/addToBasketOriginal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="@string/add"
-            android:layout_margin="8sp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_alignParentEnd="true"
-            android:background="#808080"
-            android:layout_centerVertical="true"/>
     </RelativeLayout>
 </LinearLayout>

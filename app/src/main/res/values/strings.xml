@@ -25,4 +25,8 @@
     <string name="plus">+</string>
     <string name="ko_arica">Košarica</string>
     <string name="obri_i">Obriši</string>
+    <string name="ekupi_cijena_hrk">Ekupi Cijena (HRK):</string>
+    <string name="hgspot_cijena_hrk">HGSpot Cijena (HRK):</string>
+    <string name="instar_cijena_hrk">Instar Cijena (HRK):</string>
+    <string name="asd" />
 </resources>
