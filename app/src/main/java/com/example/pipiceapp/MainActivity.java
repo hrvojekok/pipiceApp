@@ -10,10 +10,16 @@ import android.content.SharedPreferences;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,14 +31,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         View basket = findViewById(R.id.basket);
+        EditText searchView = findViewById(R.id.searchBar);
+
         SharedPreferences sharedPreferences = getSharedPreferences("SharedPreferences", Context.MODE_MULTI_PROCESS);
 
         int[] imageID = {R.drawable.s10, R.drawable.s20, R.drawable.s21,
@@ -66,13 +71,8 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(arrayAdapter);
 
-
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
-        //DatabaseReference reference = database.getReference().child("mobiteli");
         DatabaseReference reference = database.getReference();
-        //DatabaseReference referenceBasket = database.getReference().child("mobiteli").child("basket");
-
-
 
         reference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
@@ -103,53 +103,17 @@ public class MainActivity extends AppCompatActivity {
                         DabaseHelper dabaseHelper = new DabaseHelper(MainActivity.this);
                         dabaseHelper.addPhone(basketItem, basketItemPrice1, basketItemPrice2, basketItemPrice3, String.valueOf(imageID[i]));
 
-
-
-                        //Toast.makeText(MainActivity.this, "Dodano u košaricu: " + basketItem, Toast.LENGTH_LONG).show();
-
                         SharedPreferences.Editor myEdit = sharedPreferences.edit();
                         myEdit.putString(basketItem, basketItem);
                         myEdit.putString("index", String.valueOf(i));
                         myEdit.apply();
-
-                        //addToBasket(phoneName[i], String.valueOf(i));
-
-
-                        Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
-                        //startActivity(intent);
                     }
                 });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }
-
-/*
-    private void addToBasket(String phoneName, String index) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference reference = database.getReference();
-
-        reference.push();
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                reference.child("basket").child(String.valueOf(index)).setValue(phoneName);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
-*/
-
-
 }

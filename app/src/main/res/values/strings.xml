@@ -29,4 +29,12 @@
     <string name="hgspot_cijena_hrk">HGSpot Cijena (HRK):</string>
     <string name="instar_cijena_hrk">Instar Cijena (HRK):</string>
     <string name="asd" />
+    <string name="hgspots">HGSpot:</string>
+    <string name="prvimobitel">prviMobitel</string>
+    <string name="drugimobitel">drugiMobitel</string>
+    <string name="trecimobitel">treciMobitel</string>
+    <string name="cetvrtimobitel">cetvrtiMobitel</string>
+    <string name="petimobitel">petiMobitel</string>
+    <string name="ekupi">Ekupi:</string>
+    <string name="insatr">Instar:</string>
 </resources>
