@@ -15,7 +15,6 @@
     <string name="firstprice">firstPrice</string>
     <string name="secondprice">secondPrice</string>
     <string name="thirdprice">thirdPrice</string>
-    <string name="ekupi">Ekupi:</string>
     <string name="hgspot">HGSpot</string>
     <string name="hg_spot">HG Spot:</string>
     <string name="instarr">Instar:</string>
@@ -37,4 +36,17 @@
     <string name="petimobitel">petiMobitel</string>
     <string name="ekupi">Ekupi:</string>
     <string name="insatr">Instar:</string>
+    <string name="storename">storeName</string>
+    <string name="telefon1">telefon1</string>
+    <string name="telefon2">telefon2</string>
+    <string name="telefon3">telefon3</string>
+    <string name="telefon1cijena">telefon1cijena</string>
+    <string name="ž">telefon2cijena</string>
+    <string name="telefon2cijena">telefon2cijena</string>
+    <string name="telefon4">telefon4</string>
+    <string name="telefon5">telefon5</string>
+    <string name="telefon3cijena">telefon3cijena</string>
+    <string name="telefon4cinema">telefon4cinema</string>
+    <string name="telefon5cijena">telefon5cijena</string>
+    <string name="telefon4cijena">telefon4cijena</string>
 </resources>

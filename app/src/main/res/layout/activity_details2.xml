@@ -50,45 +50,13 @@
                 android:layout_margin="8sp"
                 tools:ignore="HardcodedText"
                 android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/prviMobitelEkupi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ListView
+                android:layout_margin="4sp"
+                android:id="@+id/listViewEkupi"
                 android:layout_below="@+id/ekupiNaslov"
-                android:layout_marginStart="8sp"
-                android:layout_marginTop="8sp"
-                android:layout_marginEnd="8sp"
-                android:layout_marginBottom="8sp"
-                android:text="@string/prvimobitel" />
-            <TextView
-                android:id="@+id/drugiMobitelEkupi"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/drugimobitel"
-                android:layout_below="@+id/prviMobitelEkupi"
-                android:layout_margin="6sp"/>
-            <TextView
-                android:id="@+id/treciMobitelEkupi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/trecimobitel"
-                android:layout_below="@+id/drugiMobitelEkupi"
-                android:layout_margin="6sp"/>
-            <TextView
-                android:id="@+id/cetvrtiMobitelEkupi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cetvrtimobitel"
-                android:layout_below="@+id/treciMobitelEkupi"
-                android:layout_margin="6sp"/>
-            <TextView
-                android:id="@+id/petiMobitelEkupi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/petimobitel"
-                android:layout_below="@+id/cetvrtiMobitelEkupi"
-                android:layout_margin="6sp"/>
+                android:layout_height="wrap_content"/>
+
         </RelativeLayout>
     </FrameLayout>
     <FrameLayout
@@ -107,44 +75,13 @@
                 tools:ignore="HardcodedText"
                 android:textSize="20sp"/>
 
-            <TextView
-                android:id="@+id/prviMobitelHgspot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ListView
+                android:layout_margin="4sp"
+                android:id="@+id/listViewHgspot"
                 android:layout_below="@+id/hgspotNaslov"
-                android:layout_marginStart="8sp"
-                android:layout_marginTop="8sp"
-                android:layout_marginEnd="8sp"
-                android:layout_marginBottom="8sp"
-                android:text="@string/prvimobitel" />
-            <TextView
-                android:id="@+id/drugiMobitelHgspot"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/drugimobitel"
-                android:layout_below="@+id/prviMobitelHgspot"
-                android:layout_margin="6sp"/>
-            <TextView
-                android:id="@+id/treciMobitelHgspot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/trecimobitel"
-                android:layout_below="@+id/drugiMobitelHgspot"
-                android:layout_margin="6sp"/>
-            <TextView
-                android:id="@+id/cetvrtiMobitelHgspot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cetvrtimobitel"
-                android:layout_below="@+id/treciMobitelHgspot"
-                android:layout_margin="6sp"/>
-            <TextView
-                android:id="@+id/petiMobitelHgspot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/petimobitel"
-                android:layout_below="@+id/cetvrtiMobitelHgspot"
-                android:layout_margin="6sp"/>
+                android:layout_height="wrap_content"/>
+
         </RelativeLayout>
     </FrameLayout>
     <FrameLayout
@@ -162,41 +99,13 @@
                 android:layout_margin="8sp"
                 tools:ignore="HardcodedText"
                 android:textSize="20sp"/>
-            <TextView
-                android:id="@+id/prviMobitelInstar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/prvimobitel"
+
+            <ListView
+                android:layout_margin="4sp"
+                android:id="@+id/listViewInstar"
                 android:layout_below="@+id/instarNaslov"
-                android:layout_margin="8sp"/>
-            <TextView
-                android:id="@+id/drugiMobitelInstar"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/drugimobitel"
-                android:layout_below="@+id/prviMobitelInstar"
-                android:layout_margin="6sp"/>
-            <TextView
-                android:id="@+id/treciMobitelInstar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/trecimobitel"
-                android:layout_below="@+id/drugiMobitelInstar"
-                android:layout_margin="6sp"/>
-            <TextView
-                android:id="@+id/cetvrtiMobitelInstar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cetvrtimobitel"
-                android:layout_below="@+id/treciMobitelInstar"
-                android:layout_margin="6sp"/>
-            <TextView
-                android:id="@+id/petiMobitelInstar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/petimobitel"
-                android:layout_below="@+id/cetvrtiMobitelInstar"
-                android:layout_margin="6sp"/>
+                android:layout_height="wrap_content"/>
         </RelativeLayout>
     </FrameLayout>
 </LinearLayout>
