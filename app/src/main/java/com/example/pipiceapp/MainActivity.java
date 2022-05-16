@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         basket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+                Intent intent = new Intent(MainActivity.this, DetailsActivity2.class);
                 startActivity(intent);
             }
         });

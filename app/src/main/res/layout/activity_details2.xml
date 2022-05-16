@@ -25,7 +25,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold"/>
             <TextView
-                android:id="@+id/emptyBasket"
+                android:id="@+id/emptyBasket2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/obri_i"
@@ -51,6 +51,7 @@
                 tools:ignore="HardcodedText"
                 android:textSize="20sp"/>
             <ListView
+                tools:listitem="@layout/list_item_basket_item"
                 android:layout_margin="4sp"
                 android:id="@+id/listViewEkupi"
                 android:layout_below="@+id/ekupiNaslov"
@@ -76,6 +77,7 @@
                 android:textSize="20sp"/>
 
             <ListView
+                tools:listitem="@layout/list_item_basket_item"
                 android:layout_margin="4sp"
                 android:id="@+id/listViewHgspot"
                 android:layout_below="@+id/hgspotNaslov"
@@ -101,6 +103,7 @@
                 android:textSize="20sp"/>
 
             <ListView
+                tools:listitem="@layout/list_item_basket_item"
                 android:layout_margin="4sp"
                 android:id="@+id/listViewInstar"
                 android:layout_below="@+id/instarNaslov"
