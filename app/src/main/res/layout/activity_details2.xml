@@ -42,13 +42,25 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/ekupiNaslov"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8sp"
+                android:layout_marginTop="8sp"
+                android:layout_marginEnd="8sp"
+                android:layout_marginBottom="8sp"
                 android:text="@string/ekupi"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/ukupnoEkupi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ukupno"
+                android:layout_toRightOf="@+id/ekupiNaslov"
                 android:layout_margin="8sp"
-                tools:ignore="HardcodedText"
                 android:textSize="20sp"/>
             <ListView
                 tools:listitem="@layout/list_item_basket_item"
@@ -75,6 +87,14 @@
                 android:layout_margin="8sp"
                 tools:ignore="HardcodedText"
                 android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/ukupnoHgspot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ukupno"
+                android:layout_toRightOf="@+id/hgspotNaslov"
+                android:layout_margin="8sp"
+                android:textSize="20sp"/>
 
             <ListView
                 tools:listitem="@layout/list_item_basket_item"
@@ -100,6 +120,15 @@
                 android:text="@string/insatr"
                 android:layout_margin="8sp"
                 tools:ignore="HardcodedText"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/ukupnoInstar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ukupno"
+                android:layout_toRightOf="@+id/instarNaslov"
+                android:layout_margin="8sp"
                 android:textSize="20sp"/>
 
             <ListView

@@ -40,6 +40,10 @@ public class DetailsActivity2 extends AppCompatActivity {
         ListView listViewInstar = findViewById(R.id.listViewInstar);
         TextView textView8 = findViewById(R.id.emptyBasket2);
 
+        TextView textViewUkupnoEkupi = findViewById(R.id.ukupnoEkupi);
+        TextView textViewUkupnoHgspot = findViewById(R.id.ukupnoHgspot);
+        TextView textViewUkupnoInstar = findViewById(R.id.ukupnoInstar);
+
 
 
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("basketDatabase", MODE_PRIVATE, null);
@@ -60,6 +64,9 @@ public class DetailsActivity2 extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference reference = database.getReference().child("mobiteli");
 
+        final int[] price1 = {0};
+        final int[] price2 = {0};
+        final int[] price3 = {0};
 
         if(cursor.moveToFirst()) {
             while(cursor.moveToNext()) {
@@ -69,6 +76,7 @@ public class DetailsActivity2 extends AppCompatActivity {
                 @SuppressLint("Range") String priceHgspot = cursor.getString(cursor.getColumnIndex("hgspot_price"));
                 @SuppressLint("Range") String priceInstar = cursor.getString(cursor.getColumnIndex("instar_price"));
                 reference.addValueEventListener(new ValueEventListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         ItemBasket2 itemBasket2ekupi = new ItemBasket2(phoneName, imageID, priceEkupi);
@@ -78,8 +86,14 @@ public class DetailsActivity2 extends AppCompatActivity {
                         ItemBasket2 itemBasket2instar = new ItemBasket2(phoneName, imageID, priceInstar);
                         arrayListBasketInstar.add(itemBasket2instar);
 
-                    }
+                        price1[0] = price1[0] + Integer.parseInt(priceEkupi);
+                        price2[0] = price2[0] + Integer.parseInt(priceHgspot);
+                        price3[0] = price3[0] + Integer.parseInt(priceInstar);
 
+                        textViewUkupnoEkupi.setText(String.valueOf(price1[0]) + " kn");
+                        textViewUkupnoHgspot.setText(String.valueOf(price2[0]) + " kn");
+                        textViewUkupnoInstar.setText(String.valueOf(price3[0]) + " kn");
+                    }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
