@@ -47,8 +47,14 @@ public class DetailsActivity2 extends AppCompatActivity {
 
         ArrayList<ItemBasket2> arrayListBasketEkupi = new ArrayList<>();
         ArrayAdapter<ItemBasket2> arrayAdapterBasketEkupi = new ArrayAdapter<ItemBasket2>(this, R.layout.list_item_basket_item, arrayListBasketEkupi);
+        ArrayList<ItemBasket2> arrayListBasketHgspot = new ArrayList<>();
+        ArrayAdapter<ItemBasket2> arrayAdapterBasketHgspot = new ArrayAdapter<ItemBasket2>(this, R.layout.list_item_basket_item, arrayListBasketHgspot);
+        ArrayList<ItemBasket2> arrayListBasketInstar = new ArrayList<>();
+        ArrayAdapter<ItemBasket2> arrayAdapterBasketInstar = new ArrayAdapter<ItemBasket2>(this, R.layout.list_item_basket_item, arrayListBasketInstar);
 
         listViewEkupi.setAdapter(arrayAdapterBasketEkupi);
+        listViewHgspot.setAdapter(arrayAdapterBasketHgspot);
+        listViewInstar.setAdapter(arrayAdapterBasketInstar);
         Cursor cursor = dabaseHelper.getString(null);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
@@ -60,11 +66,18 @@ public class DetailsActivity2 extends AppCompatActivity {
                 @SuppressLint("Range") String phoneName = cursor.getString(cursor.getColumnIndex("phone_name"));
                 @SuppressLint("Range") String imageID = cursor.getString(cursor.getColumnIndex("image_id"));
                 @SuppressLint("Range") String priceEkupi = cursor.getString(cursor.getColumnIndex("ekupi_price"));
+                @SuppressLint("Range") String priceHgspot = cursor.getString(cursor.getColumnIndex("hgspot_price"));
+                @SuppressLint("Range") String priceInstar = cursor.getString(cursor.getColumnIndex("instar_price"));
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        ItemBasket2 itemBasket2 = new ItemBasket2(phoneName, imageID, priceEkupi);
-                        arrayListBasketEkupi.add(itemBasket2);
+                        ItemBasket2 itemBasket2ekupi = new ItemBasket2(phoneName, imageID, priceEkupi);
+                        arrayListBasketEkupi.add(itemBasket2ekupi);
+                        ItemBasket2 itemBasket2hgspot = new ItemBasket2(phoneName, imageID, priceHgspot);
+                        arrayListBasketHgspot.add(itemBasket2hgspot);
+                        ItemBasket2 itemBasket2instar = new ItemBasket2(phoneName, imageID, priceInstar);
+                        arrayListBasketInstar.add(itemBasket2instar);
+
                     }
 
                     @Override
@@ -72,17 +85,15 @@ public class DetailsActivity2 extends AppCompatActivity {
 
                     }
                 });
-
-
-
-
-
             }
         }
 
-        ListAdapterBasket2 listAdapterBasket2 = new ListAdapterBasket2(DetailsActivity2.this, arrayListBasketEkupi);
-
-        binding.listViewEkupi.setAdapter(listAdapterBasket2);
+        ListAdapterBasket2 listAdapterBasket2ekupi = new ListAdapterBasket2(DetailsActivity2.this, arrayListBasketEkupi);
+        binding.listViewEkupi.setAdapter(listAdapterBasket2ekupi);
+        ListAdapterBasket2 listAdapterBasket2hgspot = new ListAdapterBasket2(DetailsActivity2.this, arrayListBasketHgspot);
+        binding.listViewHgspot.setAdapter(listAdapterBasket2hgspot);
+        ListAdapterBasket2 listAdapterBasket2instar = new ListAdapterBasket2(DetailsActivity2.this, arrayListBasketInstar);
+        binding.listViewInstar.setAdapter(listAdapterBasket2instar);
 
         textView8.setOnClickListener(new View.OnClickListener() {
             @Override
