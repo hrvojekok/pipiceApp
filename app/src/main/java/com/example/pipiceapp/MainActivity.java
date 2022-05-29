@@ -72,11 +72,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         arrayAdapter = new ArrayAdapter<Item>(this, R.layout.list_item, R.id.phoneName, arrayList);
-        RecyclerView recyclerView = findViewById(R.id.listView);
-        recyclerView.setAdapter(arrayAdapter);
+        //RecyclerView recyclerView = findViewById(R.id.listView);
+        //recyclerView.setAdapter(arrayAdapter);
 
-        //ListView listView = findViewById(R.id.listView);
-        //listView.setAdapter(arrayAdapter);
+        ListView listView = findViewById(R.id.listView);
+        listView.setAdapter(arrayAdapter);
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
