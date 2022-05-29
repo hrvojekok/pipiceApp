@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class ListAdapter extends ArrayAdapter<Item>{
+public class ListAdapter extends ArrayAdapter<Item> implements Filterable {
     public ListAdapter(Context context, ArrayList<Item> arrayList){
 
         super(context, R.layout.list_item, arrayList);

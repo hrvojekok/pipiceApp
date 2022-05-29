@@ -2,6 +2,7 @@ package com.example.pipiceapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -32,11 +33,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    ArrayAdapter<Item> arrayAdapter;
+    ListAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         ArrayList<Item> arrayList = new ArrayList<>();
-
+        ArrayList<Item> arrayListTemp = new ArrayList<>();
         basket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,9 +71,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<Item> arrayAdapter = new ArrayAdapter<Item>(this, R.layout.list_item, R.id.phoneName, arrayList);
-        ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(arrayAdapter);
+        arrayAdapter = new ArrayAdapter<Item>(this, R.layout.list_item, R.id.phoneName, arrayList);
+        RecyclerView recyclerView = findViewById(R.id.listView);
+        recyclerView.setAdapter(arrayAdapter);
+
+        //ListView listView = findViewById(R.id.listView);
+        //listView.setAdapter(arrayAdapter);
+
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://pipiceapp-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference reference = database.getReference();
@@ -86,9 +94,13 @@ public class MainActivity extends AppCompatActivity {
                         arrayList.add(item);
                 }
 
-                ListAdapter listAdapter = new ListAdapter(MainActivity.this, arrayList);
+                listAdapter = new ListAdapter(MainActivity.this, arrayList);
 
                 binding.listView.setAdapter(listAdapter);
+
+
+
+
                 binding.listView.setClickable(true);
                 binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -109,11 +121,68 @@ public class MainActivity extends AppCompatActivity {
                         myEdit.apply();
                     }
                 });
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //(MainActivity.this).listAdapter.getFilter().filter(charSequence);
+                int textLength = charSequence.length();
+                ArrayList<Item> tempArrayList = new ArrayList<>();
+                for(Item item: tempArrayList){
+                    if(textLength <= item.getPhoneName().length()){
+                        if(charSequence.toString().toLowerCase().contains(item.getPhoneName().toLowerCase())){
+                            //item.getPhoneName().toLowerCase().contains(charSequence.toString().toLowerCase())){
+                            tempArrayList.add(item);
+                        }
+                    }
+                }
+                ListAdapter tempListAdapter;
+                tempListAdapter = new ListAdapter(MainActivity.this, tempArrayList);
+                binding.listView.setAdapter(tempListAdapter);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        /*searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                ArrayList<Item> tempArrayList = new ArrayList<>();
+                String textToCheck = charSequence.toString();
+                if(charSequence.length()!=0){
+                    textToCheck = textToCheck.substring(0,1).toUpperCase(Locale.ROOT)+textToCheck.substring(1);
+                    for(Item itemTemp: arrayListTemp){
+                        if(itemTemp.getPhoneName().startsWith(textToCheck)){
+                            tempArrayList.add(itemTemp);
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });*/
     }
 }

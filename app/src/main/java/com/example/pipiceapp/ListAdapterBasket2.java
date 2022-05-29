@@ -1,5 +1,6 @@
 package com.example.pipiceapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ public class ListAdapterBasket2 extends ArrayAdapter<ItemBasket2> {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -35,7 +37,7 @@ public class ListAdapterBasket2 extends ArrayAdapter<ItemBasket2> {
 
         imageView.setImageResource(Integer.parseInt(itemBasket.imageListView2));
         phoneName.setText(itemBasket.telefon1);
-        phonePrice1.setText(itemBasket.telefon1cijena);
+        phonePrice1.setText(itemBasket.telefon1cijena + " kn");
         return convertView;
     }
 }
