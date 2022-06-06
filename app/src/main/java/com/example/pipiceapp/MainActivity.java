@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     ArrayAdapter<Item> arrayAdapter;
     ListAdapter listAdapter;
+    AutoCompleteTextView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         View basket = findViewById(R.id.basket);
-        EditText searchView = findViewById(R.id.searchBar);
+        searchView = findViewById(R.id.searchBar);
 
         SharedPreferences sharedPreferences = getSharedPreferences("SharedPreferences", Context.MODE_MULTI_PROCESS);
 
@@ -194,14 +196,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void populateSearch(DataSnapshot snapshot) {
-        ArrayList<Item> items = new ArrayList<>();
+        ArrayList<String> items = new ArrayList<>();
         if(snapshot.exists()){
 
             for(DataSnapshot dataSnapshot: snapshot.child("mobiteli").getChildren()){
+                //Item item = new Item(dataSnapshot.child("phoneName").getValue(String.class), (String) dataSnapshot.child("image").getValue());
                 String namePhone = dataSnapshot.child("phoneName").getValue(String.class);
-                //String imageID = dataSnapshot.child("");
-                //items.add(namePhone, );
+                //String imageID = (String) dataSnapshot.child("image").getValue();
+                items.add(namePhone);
             }
+
+            ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.list_item);
+            searchView.setAdapter(arrayAdapter);
         } else {
             Log.d("users", "no data found");
         }
