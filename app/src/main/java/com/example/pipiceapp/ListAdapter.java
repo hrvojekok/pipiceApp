@@ -1,6 +1,7 @@
 package com.example.pipiceapp;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -34,7 +37,7 @@ public class ListAdapter extends ArrayAdapter<Item> implements Filterable {
 
         ImageView imageView = convertView.findViewById(R.id.image);
         TextView phoneName = convertView.findViewById(R.id.phoneName);
-        imageView.setImageResource(Integer.parseInt(item.imageID));
+        Picasso.get().load(item.imageID).into(imageView);
         phoneName.setText(item.phoneName);
 
 

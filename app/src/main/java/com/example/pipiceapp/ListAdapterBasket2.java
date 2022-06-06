@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class ListAdapterBasket2 extends ArrayAdapter<ItemBasket2> {
@@ -35,7 +37,8 @@ public class ListAdapterBasket2 extends ArrayAdapter<ItemBasket2> {
         TextView phoneName = convertView.findViewById(R.id.telefon1);
         TextView phonePrice1 = convertView.findViewById(R.id.telefon1cijena);
 
-        imageView.setImageResource(Integer.parseInt(itemBasket.imageListView2));
+
+        Picasso.get().load(itemBasket.imageListView2).into(imageView);
         phoneName.setText(itemBasket.telefon1);
         phonePrice1.setText(itemBasket.telefon1cijena + " kn");
         return convertView;

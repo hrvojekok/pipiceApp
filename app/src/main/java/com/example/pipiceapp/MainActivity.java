@@ -2,27 +2,19 @@ package com.example.pipiceapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.pipiceapp.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -32,8 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("SharedPreferences", Context.MODE_MULTI_PROCESS);
 
-        int[] imageID = {R.drawable.s10, R.drawable.s20, R.drawable.s21,
-                R.drawable.s22, R.drawable.s5, R.drawable.s6,
-                R.drawable.s7, R.drawable.s8, R.drawable.s9};
+//        int[] imageID = {R.drawable.s10, R.drawable.s20, R.drawable.s21,
+//                R.drawable.s22, R.drawable.s5, R.drawable.s6,
+//                R.drawable.s7, R.drawable.s8, R.drawable.s9};
 
         String[] phoneName = {"Samsung Galaxy S10", "Samsung Galaxy S20", "Samsung Galaxy S21", "Samsung Galaxy S22", "Samsung Galaxy S5", "Samsung Galaxy S6",
                 "Samsung Galaxy S7", "Samsung Galaxy S8", "Samsung Galaxy S9"};
@@ -90,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                 int numberOfChildren = (int) snapshot.child("mobiteli").getChildrenCount();
                 for(int i = 0; i < numberOfChildren; i++){
                         Item item = new Item(Objects.requireNonNull(snapshot.child("mobiteli").child(phoneName[i]).child("phoneName").getValue()).toString(),
-                                String.valueOf(imageID[i]));
+                                Objects.requireNonNull(snapshot.child("mobiteli").child(phoneName[i]).child("image").getValue()).toString());
+                    //String.valueOf(imageID[i])
                         arrayList.add(item);
                 }
 
@@ -109,11 +100,12 @@ public class MainActivity extends AppCompatActivity {
                         String basketItemPrice1 = String.valueOf(snapshot.child("mobiteli").child(phoneName[i]).child("store").child("ekupi").getValue());
                         String basketItemPrice2 = String.valueOf(snapshot.child("mobiteli").child(phoneName[i]).child("store").child("hgspot").getValue());
                         String basketItemPrice3 = String.valueOf(snapshot.child("mobiteli").child(phoneName[i]).child("store").child("instar").getValue());
+                        String basketItemImage = String.valueOf(snapshot.child("mobiteli").child(phoneName[i]).child("image").getValue());
 
 
                         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("basketDatabase", MODE_PRIVATE, null);
                         DabaseHelper dabaseHelper = new DabaseHelper(MainActivity.this);
-                        dabaseHelper.addPhone(basketItem, basketItemPrice1, basketItemPrice2, basketItemPrice3, String.valueOf(imageID[i]));
+                        dabaseHelper.addPhone(basketItem, basketItemPrice1, basketItemPrice2, basketItemPrice3, basketItemImage);
 
                         SharedPreferences.Editor myEdit = sharedPreferences.edit();
                         myEdit.putString(basketItem, basketItem);
@@ -128,6 +120,20 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                populateSearch(snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        reference.addListenerForSingleValueEvent(valueEventListener);
+
+        /*
         searchView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -158,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        */
         /*searchView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -184,5 +191,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });*/
+    }
+
+    private void populateSearch(DataSnapshot snapshot) {
+        ArrayList<Item> items = new ArrayList<>();
+        if(snapshot.exists()){
+
+            for(DataSnapshot dataSnapshot: snapshot.child("mobiteli").getChildren()){
+                String namePhone = dataSnapshot.child("phoneName").getValue(String.class);
+                //String imageID = dataSnapshot.child("");
+                //items.add(namePhone, );
+            }
+        } else {
+            Log.d("users", "no data found");
+        }
     }
 }
